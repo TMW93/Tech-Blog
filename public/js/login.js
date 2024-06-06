@@ -1,8 +1,8 @@
 const loginFormHandler = async (event) => {
   event.preventDefault();
 
-  const username = document.querySelector(`#inputUsername`).value.trim();
-  const password = document.querySelector(`#inputPassword`).value.trim();
+  const username = document.querySelector(`#usernameLogin`).value.trim();
+  const password = document.querySelector(`#passwordLogin`).value.trim();
 
   if(username && password) {
     const response = await fetch(`/api/users/login`, {
