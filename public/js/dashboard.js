@@ -1,0 +1,1 @@
+document.querySelector(`#add-post-button`).addEventListener(`click`, () => location.href = `/addpost`);

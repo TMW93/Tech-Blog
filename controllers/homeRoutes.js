@@ -3,7 +3,7 @@ const {User} = require(`../models`);
 const {Post} = require(`../models`);
 const withAuth = require(`../utils/auth`);
 
-router.get(`/`, withAuth, async (req, res) => {
+router.get(`/`, async (req, res) => {
   try {
     const userData = await User.findAll({
       attributes: { exclude: ['password'] },
@@ -21,14 +21,14 @@ router.get(`/`, withAuth, async (req, res) => {
 
 router.get(`/dashboard`, withAuth, async (req, res) => {
   try {
-    const myUser = await User.findOne({
-      where: {name: req.session.username}
-    });
+    // const myUser = await User.findOne({
+    //   where: {id: req.session.user_id}
+    // });
 
-    const userID = myUser.id;
+    // const userID = myUser.id;
 
     const postData = await Post.findAll({
-      where: {user_id: userID,},
+      where: {user_id: req.session.user_id,},
     }); 
     
     const posts = postData.map((data) => data.get({plain: true}));
@@ -38,6 +38,16 @@ router.get(`/dashboard`, withAuth, async (req, res) => {
   } catch (error) {
     res.status(500).json(error);
   }
+});
+
+router.get(`/addpost`, withAuth, async (req, res) => {
+  try {
+    res.render(`addpost`, {logged_in: req.session.logged_in, logged_in_username: req.session.username});
+
+  } catch (error) {
+    res.status(500).json(error)
+  }
+
 });
 
 router.get(`/login`, (req, res) => {
