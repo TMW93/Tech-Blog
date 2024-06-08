@@ -21,14 +21,9 @@ router.get(`/`, async (req, res) => {
 
 router.get(`/dashboard`, withAuth, async (req, res) => {
   try {
-    // const myUser = await User.findOne({
-    //   where: {id: req.session.user_id}
-    // });
-
-    // const userID = myUser.id;
-
     const postData = await Post.findAll({
       where: {user_id: req.session.user_id,},
+      include: [{model: User}],
     }); 
     
     const posts = postData.map((data) => data.get({plain: true}));
