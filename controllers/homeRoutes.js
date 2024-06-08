@@ -12,7 +12,7 @@ router.get(`/`, async (req, res) => {
 
     const users = userData.map((data) => data.get({plain: true}));
 
-    res.render('homepage', {users , logged_in: req.session.logged_in, logged_in_username: req.session.username});
+    res.render(`homepage`, {users , logged_in: req.session.logged_in, logged_in_username: req.session.username});
 
   } catch (error) {
     res.status(500).json(error);
@@ -28,7 +28,7 @@ router.get(`/dashboard`, withAuth, async (req, res) => {
     
     const posts = postData.map((data) => data.get({plain: true}));
 
-    res.render('dashboard', {posts, logged_in: req.session.logged_in, logged_in_username: req.session.username});
+    res.render(`dashboard`, {posts, logged_in: req.session.logged_in, logged_in_username: req.session.username});
 
   } catch (error) {
     res.status(500).json(error);
