@@ -5,14 +5,15 @@ const withAuth = require(`../utils/auth`);
 
 router.get(`/`, async (req, res) => {
   try {
-    const userData = await User.findAll({
-      attributes: { exclude: ['password'] },
-      order: [['name', 'ASC']],
-    });
+    const postData = await Post.findAll({
+      include: [{model: User}],
+      order: [['date_created', 'ASC']],
+      limit: 5
+    }); 
+    
+    const posts = postData.map((data) => data.get({plain: true}));
 
-    const users = userData.map((data) => data.get({plain: true}));
-
-    res.render(`homepage`, {users , logged_in: req.session.logged_in, logged_in_username: req.session.username});
+    res.render(`homepage`, {posts, logged_in: req.session.logged_in, logged_in_username: req.session.username});
 
   } catch (error) {
     res.status(500).json(error);
@@ -24,6 +25,7 @@ router.get(`/dashboard`, withAuth, async (req, res) => {
     const postData = await Post.findAll({
       where: {user_id: req.session.user_id,},
       include: [{model: User}],
+      limit: 5
     }); 
     
     const posts = postData.map((data) => data.get({plain: true}));
@@ -63,4 +65,4 @@ router.get(`/signup`, (req, res) => {
   res.render(`signup`);
 });
 
-module.exports = router;
+module.exports = router;  

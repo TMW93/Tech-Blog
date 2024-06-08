@@ -1,0 +1,52 @@
+[
+  {
+    "title": "Cool Blog",
+    "content": "Look at my cool post!",
+    "user_id": 1
+  },
+  {
+    "title": "Even Cooler Blog",
+    "content": "It's even cooler now!",
+    "user_id": 1
+  },
+  {
+    "title": "A Blog",
+    "content": "Gotta write something.",
+    "user_id": 2
+  },
+  {
+    "title": "Update",
+    "content": "Nothing to update.",
+    "user_id": 2
+  },
+  {
+    "title": "Ayy",
+    "content": "Lmao",
+    "user_id": 3
+  },
+  {
+    "title": "Meme",
+    "content": "haha",
+    "user_id": 3
+  },
+  {
+    "title": "pls bro",
+    "content": "Pls",
+    "user_id": 4
+  },
+  {
+    "title": "pls bro pls",
+    "content": "dont ban me pls",
+    "user_id": 4
+  },
+  {
+    "title": "My First Day",
+    "content": "Nothing happened",
+    "user_id": 5
+  },
+  {
+    "title": "My Second Day",
+    "content": "Nothing happened ... again",
+    "user_id": 5
+  }
+]
