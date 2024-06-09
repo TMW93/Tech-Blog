@@ -7,6 +7,7 @@ router.get(`/`, async (req, res) => {
   try {
     const postData = await Post.findAll({
       include: [{model: User}],
+      attributes: {exclude: ['user.password']},
       order: [['date_created', 'ASC']],
       limit: 5
     }); 
@@ -25,6 +26,7 @@ router.get(`/dashboard`, withAuth, async (req, res) => {
     const postData = await Post.findAll({
       where: {user_id: req.session.user_id,},
       include: [{model: User}],
+      attributes: {exclude: ['user.password']},
       limit: 5
     }); 
     
@@ -51,11 +53,12 @@ router.get(`/post/:id`, withAuth, async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
       include: [{model: User}],
+      attributes: {exclude: ['user.password']},
     });
 
     const post = postData.get({plain: true});
 
-    res.render(`blogpost`, {post, logged_in: req.session.logged_in});
+    res.render(`blogpost`, {post, logged_in: req.session.logged_in, logged_in_username: req.session.username});
 
   } catch (error) {
     res.status(500).json(error);
