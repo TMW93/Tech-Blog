@@ -50,6 +50,12 @@ User.init(
       },
     },
 
+    defaultScope: {
+      attributes: {
+        exclude: ['password'],
+      },
+    },
+
     sequelize,
     timestamps: false,
     freezeTableName: true,
