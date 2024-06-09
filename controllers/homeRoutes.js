@@ -47,6 +47,21 @@ router.get(`/addpost`, withAuth, async (req, res) => {
 
 });
 
+router.get(`/post/:id`, withAuth, async (req, res) => {
+  try {
+    const postData = await Post.findByPk(req.params.id, {
+      include: [{model: User}],
+    });
+
+    const post = postData.get({plain: true});
+
+    res.render(`blogpost`, {post, logged_in: req.session.logged_in});
+
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
 router.get(`/login`, (req, res) => {
   if(req.session.logged_in) {
     res.redirect(`/`);
