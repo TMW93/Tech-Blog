@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" data-id="{{post.id}}" id="post-card">
   <div class="card-header">
     <div class="float-start">{{post.title}}</div>
     <div class="float-end">Posted By {{post.user.name}} on {{format_date post.date_created}}</div>
@@ -11,9 +11,11 @@
 <div class="addcomment-card">
   <form class="addcomment-form">
     <div class="form-group">
-      <label for="comment-content">What's On Your Mind?</label>
+      <label for="comment-content">Add a Comment</label>
       <textarea class="form-control" id="comment-content" rows="4"></textarea>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 </div>
+
+<script src="/js/createComment.js"></script>
