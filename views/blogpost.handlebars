@@ -8,6 +8,12 @@
   </div>
 </div>
 
+{{#if post.comments}}
+{{#each post.comments as |comment|}}
+{{> comments}}
+{{/each}}
+{{/if}}
+
 <div class="addcomment-card">
   <form class="addcomment-form">
     <div class="form-group">
