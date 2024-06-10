@@ -7,6 +7,19 @@
     <p>{{post.content}}</p>
   </div>
 </div>
+<div class="d-none" data-id="{{logged_in_username}}" id="buttons-div">
+  <button type="button" data-id="{{post.user.name}}" class="btn btn-info d-none" id="update-button">Update Post</button>
+  <div class="updatepost-card d-none" id="updatepost-card">
+  <form class="updatepost-form">
+    <div class="form-group">
+      <label for="update-content">Update Your Post</label>
+      <textarea class="form-control" id="update-content" rows="4"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="button" class="btn btn-danger" id="close-update">Close</button>
+  </form>
+</div>
+</div>
 
 {{#if post.comments}}
 {{#each post.comments as |comment|}}
