@@ -26,8 +26,7 @@ router.get(`/dashboard`, withAuth, async (req, res) => {
   try {
     const postData = await Post.findAll({
       where: {user_id: req.session.user_id,},
-      include: [{model: User}],
-      attributes: {exclude: ['user.password']},
+      include: [{model: User, attributes: {exclude: ['password']}}],
       limit: 5
     }); 
     
@@ -53,13 +52,15 @@ router.get(`/addpost`, withAuth, async (req, res) => {
 router.get(`/post/:id`, withAuth, async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
-      include: [{model: User}, {model: Comment}],
-      attributes: {exclude: ['user.password']},
+      include: [{model: User, attributes: {exclude: ['password']}}, {model: Comment, include:[{model: User, attributes: {exclude: ['password']}}]}],
+      // include: {all: true, nested: true},
     });
 
     const post = postData.get({plain: true});
 
     // console.log(post);
+    // console.log(post.comments[1].user.name);
+
     res.render(`blogpost`, {post, logged_in: req.session.logged_in, logged_in_username: req.session.username});
 
   } catch (error) {

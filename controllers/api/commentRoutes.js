@@ -6,18 +6,12 @@ router.post(`/`, async (req, res) => {
 
     const parsedId = parseInt(req.body.postId);
 
-    // console.log(req.body.commentContent);
-    // console.log(req.session.user_id);
-    // console.log(parsedId);
-
     const commentData = await Comment.create({
       content: req.body.commentContent,
       user_id: req.session.user_id,
       post_id: parsedId,
     });
 
-
-    
     res.status(200).json(commentData);
 
   } catch (error) {
