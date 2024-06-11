@@ -2,7 +2,7 @@
 <div class="card" data-id="{{post.id}}" id="post-card">
   <div class="card-header">
     <div class="float-start">{{post.title}}</div>
-    <div class="float-end">Posted By {{post.user.name}} on {{format_date post.date_created}}</div>
+    <div class="float-end">Posted By {{post.user.name}} on {{format_date post.updatedAt}}</div>
   </div>
   <div class="card-body">
     <p>{{post.content}}</p>
