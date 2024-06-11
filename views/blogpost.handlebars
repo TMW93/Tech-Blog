@@ -33,9 +33,11 @@
 
 {{!-- comment cards if there are any --}}
 {{#if post.comments}}
-{{#each post.comments as |comment|}}
-{{> comments}}
-{{/each}}
+<div class="d-block mt-5 p-2">
+  {{#each post.comments as |comment|}}
+  {{> comments}}
+  {{/each}}
+</div>
 {{/if}}
 
 {{!-- comment form --}}
