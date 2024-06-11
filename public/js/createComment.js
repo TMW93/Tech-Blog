@@ -32,6 +32,7 @@ const buttonsDiv = document.getElementById(`buttons-div`);
 const updateButton = document.getElementById(`update-button`);
 const updateFormCard = document.getElementById(`updatepost-card`);
 const closeUpdate = document.getElementById(`close-update`);
+const delButton = document.getElementById(`delete-post`);
 
 const buttonsDivCheck = buttonsDiv.getAttribute(`data-id`);
 const updateButtonCheck = updateButton.getAttribute(`data-id`);
@@ -40,6 +41,7 @@ const updateButtonCheck = updateButton.getAttribute(`data-id`);
 if(buttonsDivCheck === updateButtonCheck) {
   buttonsDiv.classList.remove(`d-none`);
   updateButton.classList.remove(`d-none`);
+  delButton.classList.remove(`d-none`);
 };
 
 // showing updating form on click
@@ -77,3 +79,20 @@ const updateFormHandler = async (event) => {
 };
 
 document.querySelector(`.updatepost-form`).addEventListener(`submit`, updateFormHandler);
+
+// deleting a post
+const deletePostHandler = async () => {
+  const post = document.getElementById(`post-card`);
+
+  const postId = parseInt(post.getAttribute(`data-id`));
+
+  if(postId) {
+    await fetch(`/api/posts/${postId}`, {
+      method: `DELETE`,
+    });
+  }
+
+  document.location.replace(`/dashboard`);
+};
+
+delButton.addEventListener(`click`, deletePostHandler);
