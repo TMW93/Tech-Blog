@@ -21,7 +21,7 @@ const sess = {
   rolling: true,
   cookie: {
     httpOnly: true,
-    maxAge: 1800000, //30 minute cookie will refresh on every server hit
+    maxAge: 900000, //15 minute cookie will refresh on every server hit
     secure: false,
   },
   store: new SequelizeStore({
