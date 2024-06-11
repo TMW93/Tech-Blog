@@ -1,21 +1,24 @@
 {{!-- Login Form --}}
-<div class="login-card">
-  <h2>Login</h2>
+<div class="d-flex p-2 justify-content-center mt-3">
+  <div class="login-card w-50">
+    <h2 class="text-center">Login</h2>
 
-  <form class="login-form">
-    <div class="form-group">
-      <label for="usernameLogin">Username</label>
-      <input type="text" class="form-control" id="usernameLogin" placeholder="Enter Username">
-    </div>
-    <div class="form-group">
-      <label for="passwordLogin">Password</label>
-      <input type="password" class="form-control" id="passwordLogin" placeholder="Enter Password">
-    </div>
-    <div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-      <a href="/signup">Sign Up Instead</a>
-    </div>
-  </form>
+    <form class="login-form">
+      <div class="form-group mb-2">
+        <label for="usernameLogin" class="mb-1">Username</label>
+        <input type="text" class="form-control" id="usernameLogin" placeholder="Enter Username">
+      </div>
+      <div class="form-group mb-2">
+        <label for="passwordLogin" class="mb-1">Password</label>
+        <input type="password" class="form-control" id="passwordLogin" placeholder="Enter Password">
+      </div>
+      <div>
+        <button type="submit" class="btn btn-primary float-start">Submit</button>
+        <a href="/signup" class="float-end">Sign Up Instead</a>
+      </div>
+    </form>
+  </div>
 </div>
+
 
 <script src="/js/login.js"></script>
