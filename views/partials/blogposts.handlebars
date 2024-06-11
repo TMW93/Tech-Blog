@@ -1,10 +1,12 @@
-<div class="card">
-  <div class="card-header">
-    <div class="float-start">{{title}}</div>
-    <div class="float-end">Posted By {{user.name}} on {{format_date updatedAt}}</div>
-  </div>
-  <div class="card-body">
-    <p>{{content}}</p>
-    <a href="/post/{{id}}" class="stretched-link"></a>
+<div class="d-block p-2">
+  <div class="card shadow p-0 mb-2 bg-body-tertiary rounded">
+    <div class="card-header">
+      <h5 class="float-start mt-1">{{title}}</h5>
+      <p class="float-end mb-0">Posted By {{user.name}} on {{format_date updatedAt}}</p>
+    </div>
+    <div class="card-body">
+      <p>{{content}}</p>
+      <a href="/post/{{id}}" class="stretched-link"></a>
+    </div>
   </div>
 </div>
