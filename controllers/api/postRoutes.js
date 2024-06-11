@@ -1,6 +1,7 @@
 const router = require(`express`).Router();
 const {Post} = require(`../../models`);
 
+// creating a new post
 router.post(`/`, async (req, res) => {
   try {
     const postData = await Post.create({
@@ -13,6 +14,21 @@ router.post(`/`, async (req, res) => {
 
   } catch (error) {
     res.status(400).json(error);
+  }
+});
+
+// updating a post based on its id
+router.put(`/:id`, async (req, res) => {
+  try {
+    const postData = await Post.update(
+    {content: req.body.updateContent},  
+    {where: {id: req.params.id}},
+    );
+
+    res.status(200).json(postData);
+    
+  } catch (error) {
+    res.status(500).json(error);
   }
 });
 

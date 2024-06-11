@@ -4,12 +4,12 @@ const {Post} = require(`../models`);
 const {Comment} = require(`../models`);
 const withAuth = require(`../utils/auth`);
 
+// route for the homepage
 router.get(`/`, async (req, res) => {
   try {
     const postData = await Post.findAll({
-      include: [{model: User}],
-      attributes: {exclude: ['user.password']},
-      order: [['date_created', 'ASC']],
+      include: [{model: User, attributes: {exclude: ['password']}}],
+      order: [['date_created', 'DESC']],
       limit: 5
     }); 
     
@@ -22,11 +22,13 @@ router.get(`/`, async (req, res) => {
   }
 });
 
+// route for the dashboard
 router.get(`/dashboard`, withAuth, async (req, res) => {
   try {
     const postData = await Post.findAll({
       where: {user_id: req.session.user_id,},
       include: [{model: User, attributes: {exclude: ['password']}}],
+      order: [['date_created', 'DESC']],
       limit: 5
     }); 
     
@@ -39,6 +41,7 @@ router.get(`/dashboard`, withAuth, async (req, res) => {
   }
 });
 
+// route for the add post page
 router.get(`/addpost`, withAuth, async (req, res) => {
   try {
     res.render(`addpost`, {logged_in: req.session.logged_in, logged_in_username: req.session.username});
@@ -49,6 +52,7 @@ router.get(`/addpost`, withAuth, async (req, res) => {
 
 });
 
+// route for viewing a post
 router.get(`/post/:id`, withAuth, async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
@@ -68,6 +72,7 @@ router.get(`/post/:id`, withAuth, async (req, res) => {
   }
 });
 
+// route for login page
 router.get(`/login`, (req, res) => {
   if(req.session.logged_in) {
     res.redirect(`/`);
@@ -77,6 +82,7 @@ router.get(`/login`, (req, res) => {
   res.render(`login`);
 });
 
+// route for signup page
 router.get(`/signup`, (req, res) => {
   if(req.session.logged_in) {
     res.redirect(`/`);

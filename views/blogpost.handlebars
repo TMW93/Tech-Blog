@@ -1,3 +1,4 @@
+{{!-- the post --}}
 <div class="card" data-id="{{post.id}}" id="post-card">
   <div class="card-header">
     <div class="float-start">{{post.title}}</div>
@@ -7,6 +8,8 @@
     <p>{{post.content}}</p>
   </div>
 </div>
+
+{{!-- update button and update form --}}
 <div class="d-none" data-id="{{logged_in_username}}" id="buttons-div">
   <button type="button" data-id="{{post.user.name}}" class="btn btn-info d-none" id="update-button">Update Post</button>
   <div class="updatepost-card d-none" id="updatepost-card">
@@ -21,12 +24,14 @@
 </div>
 </div>
 
+{{!-- comment cards if there are any --}}
 {{#if post.comments}}
 {{#each post.comments as |comment|}}
 {{> comments}}
 {{/each}}
 {{/if}}
 
+{{!-- comment form --}}
 <div class="addcomment-card">
   <form class="addcomment-form">
     <div class="form-group">

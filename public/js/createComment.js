@@ -1,3 +1,4 @@
+// adding a comment
 const commentFormHandler = async (event) => {
   event.preventDefault();
 
@@ -26,20 +27,53 @@ const commentFormHandler = async (event) => {
 
 document.querySelector(`.addcomment-form`).addEventListener(`submit`, commentFormHandler);
 
+// updating a post
 const buttonsDiv = document.getElementById(`buttons-div`);
 const updateButton = document.getElementById(`update-button`);
 const updateFormCard = document.getElementById(`updatepost-card`);
+const closeUpdate = document.getElementById(`close-update`);
 
 const buttonsDivCheck = buttonsDiv.getAttribute(`data-id`);
 const updateButtonCheck = updateButton.getAttribute(`data-id`);
 
-const updateButtonHandler = async () => {
-  updateFormCard.classList.remove(`d-none`);
-};
-
+// making sure user created the post to show update button
 if(buttonsDivCheck === updateButtonCheck) {
   buttonsDiv.classList.remove(`d-none`);
   updateButton.classList.remove(`d-none`);
-}
+};
 
-document.getElementById(`update-button`).addEventListener(`click`, updateButtonHandler);
+// showing updating form on click
+document.getElementById(`update-button`).addEventListener(`click`, () => {
+  updateFormCard.classList.remove(`d-none`);
+});
+
+// closing form on click 
+closeUpdate.addEventListener(`click`, () => {
+  updateFormCard.classList.add(`d-none`);
+});
+
+// updating a post
+const updateFormHandler = async (event) => {
+  event.preventDefault();
+
+  const updateContent = document.querySelector(`#update-content`).value.trim();
+  const post = document.getElementById(`post-card`);
+
+  const postId = parseInt(post.getAttribute(`data-id`));
+
+  if(updateContent && postId) {
+    const response = await fetch(`/api/posts/${postId}`, {
+      method: `PUT`,
+      body: JSON.stringify({updateContent}),
+      headers: {'Content-Type': 'application/json'},
+    });
+
+    if(response.ok) {
+      document.location.replace(`/dashboard`);
+    } else {
+      alert(`Failed To Update Post.`);
+    }
+  }
+};
+
+document.querySelector(`.updatepost-form`).addEventListener(`submit`, updateFormHandler);
