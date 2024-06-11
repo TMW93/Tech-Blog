@@ -1,0 +1,41 @@
+body {
+  background-color: rgb(198, 195, 234);
+}
+
+header {
+  background-color: rgb(60, 115, 182);
+}
+
+nav {
+  background-color: aliceblue;
+}
+
+h1 {
+  font-size: 300%;
+  color: aliceblue;
+}
+
+#welcome-header {
+  color: aliceblue;
+}
+ 
+.card-header {
+  background-color: rgb(60, 115, 182);
+}
+
+.card-header p, .card-header h5 {
+  color: aliceblue;
+}
+
+.card-body {
+  background-color: aliceblue;
+}
+
+#dashboard-title {
+  color: rgb(26, 47, 73);
+}
+
+form label {
+  color: rgb(26, 47, 73);
+}
+
