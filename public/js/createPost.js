@@ -1,3 +1,4 @@
+// adding a new post
 const postFormHandler = async (event) => {
   event.preventDefault();
 
@@ -20,3 +21,6 @@ const postFormHandler = async (event) => {
 };
 
 document.querySelector(`.addpost-form`).addEventListener(`submit`, postFormHandler);
+
+// going back to dashboard
+document.getElementById(`post-back-button`).addEventListener(`click`, () => location.href = `/dashboard`);
