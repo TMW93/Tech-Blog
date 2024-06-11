@@ -1,5 +1,5 @@
 {{!-- the post --}}
-<div class="d-block p-2">
+<div class="d-block p-2 pb-0">
   <div class="card shadow p-0 mb-2 bg-body-tertiary rounded" data-id="{{post.id}}" id="post-card">
     <div class="card-header">
       <h5 class="float-start mt-1">{{post.title}}</h5>
@@ -18,10 +18,15 @@
     <button type="button" data-id="{{post.user.name}}" class="btn btn-info d-none float-start mt-1" id="update-button">Update Post</button>
     <button type="button" class="btn btn-danger d-none float-end mt-1" id="delete-post">Delete Post</button>
   </div>
-  <div class="updatepost-card d-none mt-5" id="updatepost-card">
+  <div class="updatepost-card d-none mt-5 w-75 ms-5" id="updatepost-card">
+    <h2>Update Your Blog</h2>
     <form class="updatepost-form">
       <div class="form-group">
-        <label for="update-content" class="fs-5">Update Your Post</label>
+        <label for="update-title" class="fs-5">Update Your Title</label>
+        <input type="text" class="form-control" id="update-title"></input>
+      </div>
+      <div class="form-group">
+        <label for="update-content" class="fs-5">Update Your Content</label>
         <textarea class="form-control" id="update-content" rows="3"></textarea>
       </div>
       <button type="submit" class="btn btn-primary mt-1 float-start">Submit</button>

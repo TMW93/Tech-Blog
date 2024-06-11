@@ -20,10 +20,12 @@ router.post(`/`, async (req, res) => {
 // updating a post based on its id
 router.put(`/:id`, async (req, res) => {
   try {
-    const postData = await Post.update(
-    {content: req.body.updateContent},  
-    {where: {id: req.params.id}},
-    );
+    const postData = await Post.update({
+      title: req.body.updateTitle,
+      content: req.body.updateContent
+    },  
+    {where: {id: req.params.id}
+  });
 
     res.status(200).json(postData);
     

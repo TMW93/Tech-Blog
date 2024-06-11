@@ -58,15 +58,16 @@ closeUpdate.addEventListener(`click`, () => {
 const updateFormHandler = async (event) => {
   event.preventDefault();
 
+  const updateTitle = document.querySelector(`#update-title`).value.trim();
   const updateContent = document.querySelector(`#update-content`).value.trim();
   const post = document.getElementById(`post-card`);
 
   const postId = parseInt(post.getAttribute(`data-id`));
 
-  if(updateContent && postId) {
+  if(updateTitle && updateContent && postId) {
     const response = await fetch(`/api/posts/${postId}`, {
       method: `PUT`,
-      body: JSON.stringify({updateContent}),
+      body: JSON.stringify({updateTitle, updateContent}),
       headers: {'Content-Type': 'application/json'},
     });
 
