@@ -39,8 +39,8 @@ router.delete(`/:id`, async (req, res) => {
       where: {id: req.params.id},
     });
 
-    res.status(200);
-    
+    res.status(200).json({message: `Deleted post successfully.`});
+
   } catch (error) {
     res.status(500).json(error);
   }

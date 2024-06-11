@@ -87,12 +87,16 @@ const deletePostHandler = async () => {
   const postId = parseInt(post.getAttribute(`data-id`));
 
   if(postId) {
-    await fetch(`/api/posts/${postId}`, {
+    const response = await fetch(`/api/posts/${postId}`, {
       method: `DELETE`,
     });
-  }
 
-  document.location.replace(`/dashboard`);
+    if(response.ok) {
+      document.location.replace(`/dashboard`);
+    } else {
+      alert(`Failed To Delete Post.`);
+    }
+  }
 };
 
 delButton.addEventListener(`click`, deletePostHandler);
